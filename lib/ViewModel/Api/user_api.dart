@@ -5,6 +5,21 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import '../../Helper/app_const.dart';
 
+/// Low-level HTTP client for user-profile endpoints.
+///
+/// | Method                   | HTTP             | Endpoint              |
+/// |--------------------------|------------------|-----------------------|
+/// | [getUser]                | GET              | `/user`               |
+/// | [updateUser]             | POST (PUT spoof) | `/user`               |
+/// | [uploadImage]            | POST             | `/upload-profile-pic` |
+/// | [signFirebaseInAnonymously] | –             | Firebase SDK          |
+///
+/// [updateUser] sends a `multipart/form-data` request with a `_method=PUT`
+/// field so Laravel can route it correctly.  An optional [photo] [File] is
+/// attached when the user changes their profile picture.
+///
+/// [signFirebaseInAnonymously] signs the device into Firebase anonymously,
+/// which is needed to obtain a push token before the user has logged in.
 class UserApi {
 
 

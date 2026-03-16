@@ -10,6 +10,19 @@ import '../../Model/team_model.dart';
 import '../../ViewModel/game_view_model.dart';
 import '../Widgets/game_details_placeholder.dart';
 
+/// Displays the full details of a single [GameModel] identified by the
+/// `id` query parameter in the route.
+///
+/// Shows:
+/// * Match date, time, duration, type, price, and location (with a link to
+///   open the map URL).
+/// * Team rosters (Red / Blue) and missing-players count.
+/// * Available amenities and venue characteristics.
+/// * A **Join** button that calls [GameViewModel.joinGame] and then triggers
+///   the payment flow via [PaymentViewModel.createPayment].
+///
+/// A placeholder skeleton ([GameDetailsPlaceholder]) is rendered while the
+/// game data is loading.
 class GameDetails extends StatefulWidget {
   const GameDetails({super.key});
 

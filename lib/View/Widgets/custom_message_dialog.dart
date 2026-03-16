@@ -5,12 +5,24 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 
+/// Simple enum-like class that defines the three message types used by
+/// [showCustomMessageDialog]:
+/// * [Type.error]   – displayed with a red badge icon.
+/// * [Type.warning] – displayed with a yellow badge icon.
+/// * [Type.success] – displayed with a green badge icon.
 class Type {
   static String error = 'Error';
   static String warning = 'Warning';
   static String success = 'Success';
 }
 
+/// Shows a modal feedback dialog using [Get.dialog].
+///
+/// [text] is the message body.  [type] must be one of the constants from
+/// [Type] (`'Error'`, `'Warning'`, `'Success'`).  An optional
+/// [buttonText] label overrides the default "Close" text, and [onPressed]
+/// lets callers perform an action when the button is tapped.
+/// [barrierDismissible] controls whether tapping outside the dialog closes it.
 void showCustomMessageDialog(String text, String type,{String buttonText = 'Close',void Function()? onPressed,bool barrierDismissible = true}) {
   SettingsViewModel settingsViewModel = Get.put(SettingsViewModel());
   Get.dialog(

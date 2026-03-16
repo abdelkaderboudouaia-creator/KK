@@ -11,6 +11,19 @@ import '../Model/user_model.dart';
 import '../View/Widgets/custom_message_dialog.dart';
 import 'Api/user_api.dart';
 import 'notification_view_model.dart';
+
+/// GetX controller that holds the currently authenticated [UserModel] and
+/// provides user-related operations.
+///
+/// * [initUser] – called from [SplashScreen] to silently restore a saved
+///   session without navigating.
+/// * [getUser]  – fetches the user from the API and then navigates to
+///   [Routes.HOME] (or a pending deep-link route).
+/// * [updateUser] – sends profile changes (including an optional photo
+///   [File]) to the backend via multipart/form-data.
+///
+/// [isLoggedIn] is a convenience getter that checks for a stored token.
+/// [loading] drives the `ModalProgressHUD` on the Edit Profile screen.
 class UserViewModel extends GetxController {
 
 

@@ -1,3 +1,9 @@
+/// Represents a payment card associated with a user.
+///
+/// This model stores card details such as [number], [holderName],
+/// [expirationDate], and [cvv] that are used for payment processing.
+/// It is serialized to / deserialized from JSON when communicating with
+/// the backend payment endpoints.
 class CardModel {
   int? id;
   int? userId;

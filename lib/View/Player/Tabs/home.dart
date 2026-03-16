@@ -7,6 +7,11 @@ import '../../../ViewModel/game_view_model.dart';
 import '../../../ViewModel/settings_view_model.dart';
 import '../../Widgets/custom_game.dart';
 
+/// Home tab – displays the list of available upcoming games.
+///
+/// Loads games via [GameViewModel.getGames] on first render.  Games can be
+/// filtered by category (Football / Padel) using [CustomCategoriesGame].
+/// Each game is rendered by [CustomGame].  Pull-to-refresh reloads the list.
 class Home extends StatefulWidget {
   const Home({super.key});
 

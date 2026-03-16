@@ -6,7 +6,11 @@ import 'package:intl/intl.dart' as intl;
 import 'package:qplay/Helper/app_routes.dart';
 import 'package:qplay/Model/wallet_transaction_model.dart';
 
-
+/// A list-tile card for a single [WalletTransactionModel].
+///
+/// Displays the transaction icon (credit ↑ / debit ↓), formatted amount,
+/// description, and date.  Tapping navigates to [Routes.TRANSACTIONS] with
+/// the transaction `id` as a query parameter.
 class TransactionCard extends StatelessWidget {
   final WalletTransactionModel transaction;
 

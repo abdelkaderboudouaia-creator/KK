@@ -5,6 +5,12 @@ import 'package:qplay/Model/wallet_transaction_model.dart';
 import 'package:qplay/ViewModel/payment_view_model.dart';
 import 'package:qplay/View/Widgets/transaction_card.dart'; // Import your TransactionCard
 
+/// Screen that lists all of the user's wallet [WalletTransactionModel]
+/// entries in chronological order.
+///
+/// Fetches the full wallet via [PaymentViewModel.getTransactions] on load.
+/// Each row is rendered by [TransactionCard] and tapping it navigates to
+/// [TransactionDetails] (via [Routes.TRANSACTIONS?id=<id>]).
 class Transactions extends StatefulWidget {
   const Transactions({super.key});
 

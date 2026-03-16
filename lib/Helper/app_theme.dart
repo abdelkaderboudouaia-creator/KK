@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'app_const.dart';
 
-
+/// Defines the light and dark [ThemeData] used by [MyApp].
+///
+/// Both themes share the same `BalooBhaijaan2` font family (for Arabic/Latin
+/// support) and use [AppConst.primaryColor] as their primary colour.
+/// Visual differences between the two themes include background, card,
+/// input-field, app-bar, and divider colours.
 class AppTheme {
 
   static final light = ThemeData(

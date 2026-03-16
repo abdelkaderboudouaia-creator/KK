@@ -1,3 +1,7 @@
+/// Defines all named route strings used with GetX navigation.
+///
+/// Every screen registered in [AppPages.routes] has a corresponding constant
+/// here so navigation calls never use raw string literals.
 class Routes {
   static const SPLASH = '/';
   static const LANGUAGE = '/language-selection';

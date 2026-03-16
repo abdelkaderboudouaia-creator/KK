@@ -7,8 +7,22 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import '../../Helper/app_const.dart';
 import 'package:flutter/material.dart';
 
-
-
+/// Low-level client for notification-related REST endpoints **and** the
+/// real-time WebSocket (Pusher-compatible) channel.
+///
+/// REST endpoints:
+///
+/// | Method               | HTTP | Endpoint                    |
+/// |----------------------|------|-----------------------------|
+/// | [getNotifications]   | GET  | `/notifications`            |
+/// | [readNotification]   | POST | `/read-notification`        |
+/// | [readAllNotification]| POST | `/read-all-notification`    |
+///
+/// WebSocket:
+/// * [connect] – opens an `IOWebSocketChannel` to the Pusher server,
+///   authenticates the private channel, and yields [NotificationModel]-
+///   compatible maps whenever a `NotificationCreated` event is received.
+/// * [disconnect] – closes the channel and the backing [StreamController].
 class NotificationApi {
 
 

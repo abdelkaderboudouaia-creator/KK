@@ -11,6 +11,16 @@ import '/Helper/app_const.dart';
 import '../Widgets/custom_button.dart';
 import '../Widgets/custom_text_field.dart';
 
+/// Email / password login screen.
+///
+/// Provides:
+/// * Email and password text fields validated by [formKey].
+/// * A "Login" button that calls [AuthViewModel.login].
+/// * A "Login with Google" button via [LoginWithSocialMedia] widget.
+/// * Navigation links to [Routes.REGISTER] and [Routes.FORGET_PASSWORD].
+///
+/// A [ModalProgressHUD] overlay is shown while [AuthViewModel.loading]
+/// is `true`.
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 

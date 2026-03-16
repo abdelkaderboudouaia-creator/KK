@@ -9,6 +9,14 @@ import '../Widgets/custom_text_button.dart';
 import '../Widgets/custom_text_field.dart';
 import '/Helper/app_const.dart';
 
+/// New user registration screen.
+///
+/// Collects first name, last name, email, phone number (via
+/// [PhoneNumberField]), birthday, and password.  Pre-fills name and email
+/// when the user arrives from the Google Sign-In flow (values are set on
+/// [AuthViewModel] before navigation).
+///
+/// Submitting the form calls [AuthViewModel.register].
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 

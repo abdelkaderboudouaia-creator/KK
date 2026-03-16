@@ -4,7 +4,14 @@ import 'package:qplay/Model/game_model.dart';
 import 'package:qplay/Model/player_model.dart';
 import 'package:qplay/Model/player_team_model.dart';
 
-
+/// Represents one of the two competing teams in a [GameModel].
+///
+/// Each game is split into exactly two teams: **Red** and **Blue** (see
+/// [isRed] / [isBlue]).  A team holds a list of [PlayerTeamModel] entries
+/// ([playerTeams]) that map enrolled players to this team.
+///
+/// [missingPlayers] tells the UI how many spots are still open, so the
+/// join-game button can be shown or hidden accordingly.
 class TeamModel {
   final int id;
   final int? gameId;
