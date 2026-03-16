@@ -3,6 +3,18 @@ import 'dart:convert';
 import 'package:qplay/Model/user_model.dart';
 import 'package:qplay/Model/user_notification_model.dart';
 
+/// Represents a push notification sent from the backend to one or more users.
+///
+/// Notifications are received through two channels:
+/// 1. **Firebase Cloud Messaging (FCM)** – handled in the
+///    `_background` function in `main.dart`.
+/// 2. **WebSocket (Pusher)** – streamed via [NotificationApi.connect] and
+///    accumulated in [NotificationViewModel.notifications].
+///
+/// [payload] is a key-value map that may contain a `route` key used to
+/// deep-link the user to a specific screen when the notification is tapped.
+/// [isRead] reflects whether the currently authenticated user has already
+/// read this notification.
 class NotificationModel {
   final int id;
   final int? userId;

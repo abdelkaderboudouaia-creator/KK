@@ -1,3 +1,8 @@
+/// Represents an administrator account linked to a [UserModel].
+///
+/// An admin may be a regular admin or a super-admin
+/// (indicated by [isSuperAdmin]).  The backend returns this object nested
+/// inside a [UserModel] whenever the authenticated user has the `admin` role.
 class AdminModel {
   int? id;
   int? userId;

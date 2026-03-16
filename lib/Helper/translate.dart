@@ -1,6 +1,11 @@
 import 'package:get/get.dart';
 
-
+/// GetX [Translations] class that provides Arabic (`ar`) and English (`en`)
+/// string translations for all user-visible text in the app.
+///
+/// Strings are looked up at runtime with the `.tr` extension provided by
+/// the GetX package.  The active locale is set via [SettingsViewModel.setLocal]
+/// and persisted to [SharedPreferences].
 class Translate extends Translations{
   @override
   // TODO: implement keys

@@ -7,7 +7,13 @@ import 'package:qplay/ViewModel/notification_view_model.dart';
 import '../../Helper/app_const.dart';
 import '../../Helper/functions.dart';
 
-
+/// A list-tile card for a single [NotificationModel].
+///
+/// Shows the notification title, body, a relative timestamp via [showTime],
+/// and a sender avatar ([CustomProfilePic]).  Tapping the card marks the
+/// notification as read via [NotificationViewModel.readNotification] and
+/// navigates to the deep-link route stored in [NotificationModel.payload].
+/// Unread notifications are highlighted with a coloured left border.
 class NotificationCard extends StatelessWidget {
   const NotificationCard({super.key, required this.notification});
 

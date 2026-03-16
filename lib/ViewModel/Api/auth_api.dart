@@ -3,6 +3,23 @@ import 'package:http/http.dart' as http;
 
 import '../../Helper/app_const.dart';
 
+/// Low-level HTTP client for all authentication endpoints.
+///
+/// Each method maps 1-to-1 to a backend REST endpoint:
+///
+/// | Method              | HTTP | Endpoint                  |
+/// |---------------------|------|---------------------------|
+/// | [register]          | POST | `/register`               |
+/// | [login]             | POST | `/login`                  |
+/// | [loginWithGoogle]   | POST | `/login-with-google`      |
+/// | [forgetPassword]    | GET  | `/forgot-password`        |
+/// | [verifyOTP]         | POST | `/verify-otp`             |
+/// | [resetPassword]     | POST | `/reset-password`         |
+/// | [changePassword]    | POST | `/change-password`        |
+/// | [logout]            | POST | `/logout`                 |
+///
+/// All requests include `Accept: application/json`.  Authenticated requests
+/// attach `Authorization: Bearer <token>` from [AppConst.prefs].
 class AuthApi {
 
   Future<http.Response> register({

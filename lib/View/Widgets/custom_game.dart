@@ -5,6 +5,11 @@ import 'package:qplay/Helper/game_characteristics.dart';
 import 'package:qplay/Model/game_model.dart';
 import '../../Helper/app_const.dart';
 
+/// A card widget that summarises a single [GameModel] in the Home tab list.
+///
+/// Displays game type icon, match date/time, venue name, price, team sizes,
+/// and a row of amenity icons from [GameCharacteristic].
+/// Tapping the card navigates to the [GameDetails] screen for that game.
 class CustomGame extends StatelessWidget {
   final GameModel game;
 

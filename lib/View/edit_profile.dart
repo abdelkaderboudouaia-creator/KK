@@ -12,6 +12,14 @@ import 'package:get/get.dart';
 import 'Widgets/custom_text_field.dart';
 import 'Widgets/phone_number_field.dart';
 
+/// Screen that lets the authenticated user update their profile information.
+///
+/// Fields: first name, last name, username, phone number, birthday, and
+/// profile photo (picked from gallery or camera via [ImagePicker]).
+///
+/// On submission the data is sent to the backend through
+/// [UserViewModel.updateUser].  A loading overlay ([ModalProgressHUD]) is
+/// shown while the request is in flight.
 class EditProfile extends StatefulWidget {
   const EditProfile({
     super.key,

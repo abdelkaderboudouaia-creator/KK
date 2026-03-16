@@ -3,8 +3,12 @@ import '/Helper/app_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
+/// A reusable themed text input field.
+///
+/// Wraps [TextFormField] with the app's design language (rounded corners,
+/// primary colour focus border, Arabic/LTR direction awareness).
+/// Supports validation ([validator]), save callbacks ([onSaved]),
+/// prefix/suffix icons, initial values, read-only mode, and multi-line input.
 class CustomTextField extends StatelessWidget {
   CustomTextField({super.key, required this.hintText,this.inputType = TextInputType.text, this.validator, this.onSaved, this.suffixIcon, this.initValue, this.readOnly = false, this.onTap, this.textEditingController, this.prefixIcon, this.maxLines = 1, this.maxLength, });
   final String hintText;

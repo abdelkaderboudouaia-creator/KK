@@ -10,7 +10,16 @@ import 'Tabs/home.dart';
 import 'Tabs/profile.dart';
 import 'package:badges/badges.dart' as badges;
 
-
+/// Shell screen that hosts the animated bottom navigation bar and switches
+/// between the three main tabs:
+///
+/// * **Home** (index 0)          – [HomeTab] – lists upcoming games.
+/// * **Notifications** (index 1) – [NotificationsTab] – shows the
+///   notification feed with an unread badge.
+/// * **Profile** (index 2)       – [ProfileTab] – user profile and settings.
+///
+/// The initial tab is derived from the [route] parameter so that deep-links
+/// (e.g. from a push notification) can land on the correct tab.
 class NavigatorScreen extends StatefulWidget {
   const NavigatorScreen({super.key,this.route = '/home'});
   final String route;

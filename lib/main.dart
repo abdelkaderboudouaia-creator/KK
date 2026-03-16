@@ -23,6 +23,17 @@ import 'ViewModel/settings_view_model.dart';
 import 'firebase_options.dart';
 
 @pragma('vm:entry-point')
+/// Top-level FCM background/foreground message handler.
+///
+/// Called by [FirebaseMessaging.onBackgroundMessage] (when the app is
+/// terminated or in the background) and by [FirebaseMessaging.onMessage]
+/// (when the app is in the foreground).
+///
+/// The function:
+/// 1. Re-initialises [SharedPreferences] if needed (background isolate).
+/// 2. Refreshes the notification list via [NotificationViewModel].
+/// 3. Displays a local OS notification via [AwesomeNotifications] using the
+///    `title`, `body`, and optional `payload` fields from [message.data].
 Future<void> _background(RemoteMessage message) async {
   try{
     try{
@@ -91,6 +102,18 @@ void main() async {
   runApp(MyApp());
 }
 
+/// The root widget of the QPlay application.
+///
+/// Configures the [GetMaterialApp] with:
+/// * **Translations** – [Translate] (Arabic / English).
+/// * **Initial bindings** – permanently registers all GetX controllers
+///   ([SettingsViewModel], [AuthViewModel], [UserViewModel],
+///   [GameViewModel], [NotificationViewModel]).
+/// * **Routing** – [AppPages.routes] driven by [Routes] constants.
+/// * **Theming** – [AppTheme.light] / [AppTheme.dark], with the active mode
+///   read from [ThemeService].
+/// * **Locale** – defaults to the language stored in [SharedPreferences]
+///   (falls back to `ar`).
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

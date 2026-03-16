@@ -6,6 +6,12 @@ import 'package:qplay/ViewModel/payment_view_model.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:qplay/Model/wallet_transaction_model.dart';
 
+/// Displays detailed information about a single [WalletTransactionModel].
+///
+/// Reached from [Transactions] (via [Routes.TRANSACTIONS?id=<id>]).
+/// Fetches the transaction from [PaymentViewModel.getTransaction] and
+/// shows amount, type (credit / debit), description, linked game info,
+/// and timestamp.
 class TransactionDetails extends StatefulWidget {
   const TransactionDetails({super.key});
 

@@ -3,6 +3,17 @@ import 'package:http/http.dart' as http;
 import 'package:qplay/Helper/app_const.dart';
 import 'package:qplay/ViewModel/Api/Exceptions/api_exception.dart';
 
+/// Low-level HTTP client for payment and wallet endpoints.
+///
+/// | Method              | HTTP | Endpoint                  |
+/// |---------------------|------|---------------------------|
+/// | [createPayment]     | POST | `/create-payment`         |
+/// | [getTransactions]   | GET  | `/transactions`           |
+/// | [getTransaction]    | GET  | `/transactions/:id`       |
+///
+/// All requests are authenticated with the stored Bearer token.
+/// The response from [createPayment] contains a `payment_url` that is
+/// opened in an external browser by [PaymentViewModel].
 class PaymentApi {
 
 

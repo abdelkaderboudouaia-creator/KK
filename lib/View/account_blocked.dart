@@ -4,6 +4,11 @@ import 'package:qplay/View/Widgets/custom_text_field.dart';
 
 import '../Helper/app_const.dart';
 
+/// Displayed when the backend marks the user's account as blocked
+/// ([UserModel.isBlocked] == `true`).
+///
+/// Back navigation is disabled ([WillPopScope]) so the user cannot bypass
+/// the blocked state.  A support-contact prompt is shown.
 class AccountBlocked extends StatelessWidget {
   const AccountBlocked({super.key});
 

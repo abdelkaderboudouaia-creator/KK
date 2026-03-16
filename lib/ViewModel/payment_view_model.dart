@@ -7,6 +7,17 @@ import 'package:qplay/ViewModel/api/payment_api.dart';
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 
+/// GetX controller that handles wallet top-ups and transaction history.
+///
+/// * [createPayment] – creates a payment via the SkipCash gateway and opens
+///   the returned [payUrl] in the device's default browser.
+/// * [getTransactions] – fetches the authenticated user's [WalletModel]
+///   (including the full list of [WalletTransactionModel] entries).
+/// * [getTransaction]  – fetches details for a single transaction by ID.
+///
+/// [wallet] is a reactive nullable value; the Wallet screen observes it to
+/// display the current balance.  [isLoading] and [errorMessage] are used
+/// for UI feedback.
 class PaymentViewModel extends GetxController {
   final PaymentApi _paymentApi = PaymentApi();
 

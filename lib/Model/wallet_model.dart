@@ -4,6 +4,15 @@
 import 'package:qplay/Model/user_model.dart';
 import 'package:qplay/Model/wallet_transaction_model.dart';
 
+/// Represents the digital wallet belonging to a [UserModel].
+///
+/// Each user has exactly one wallet.  The wallet's current [balance] is
+/// displayed on the **Wallet** screen, and [transactions] holds the full
+/// history of [WalletTransactionModel] entries.
+///
+/// Helper getters:
+/// * [incomeTransactions] / [expenseTransactions] – filtered sublists.
+/// * [totalIncome] / [totalExpenses]             – aggregated amounts.
 class WalletModel {
   final int id;
   final int? userId;

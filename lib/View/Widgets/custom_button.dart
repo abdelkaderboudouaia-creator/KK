@@ -1,6 +1,11 @@
 import '/Helper/app_const.dart';
 import 'package:flutter/material.dart';
 
+/// A styled primary action button used throughout the app.
+///
+/// [text] is the button label.  [color] overrides the default
+/// [AppConst.primaryColor].  [onPressed] is `null`-safe – when `null` the
+/// button is disabled.
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.text, this.color,required this.onPressed});
   final String text;

@@ -6,6 +6,20 @@ import 'package:qplay/Model/admin_model.dart';
 import 'package:qplay/Model/payment_model.dart';
 import 'package:qplay/Model/team_model.dart';
 
+/// Represents a sports match (game) available on the QPlay platform.
+///
+/// Each game has a type ([gameType]: `Football` or `Padel`), a scheduled
+/// [matchDate], a [price] per player, a [placeName] where it takes place,
+/// and two teams ([TeamModel]): **Red** and **Blue** (accessible via
+/// [redTeam] and [blueTeam]).
+///
+/// Useful computed properties:
+/// * [isUpcoming] / [isPast] / [isOngoing] – timing helpers.
+/// * [totalPlayers]          – total enrolled players across both teams.
+/// * [formattedDuration]     – human-readable match length.
+/// * [availableAmenities]    – list of provided services (goalkeeper, referee, water).
+/// * [isEnrolled]            – whether the currently authenticated user is
+///   already enrolled in this game.
 class GameModel {
   final int id;
   final int? adminId;

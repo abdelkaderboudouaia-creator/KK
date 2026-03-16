@@ -3,6 +3,11 @@ import 'package:get/get.dart';
 import '../../Helper/app_const.dart';
 import '../../ViewModel/settings_view_model.dart';
 //'Are you sure ? '
+
+/// Shows a lightweight confirmation dialog using [Get.dialog].
+///
+/// [text] is the body of the dialog.  An optional [widget] can be rendered
+/// below the text.  [onPressed] is called when the user confirms.
 void showCustomDialog({required String text,required Function()? onPressed, Widget? widget}) {
   SettingsViewModel settingsViewModel = Get.put(SettingsViewModel());
   Get.dialog(Center(

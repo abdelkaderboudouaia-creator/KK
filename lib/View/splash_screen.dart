@@ -5,7 +5,17 @@ import '../Helper/app_const.dart';
 import '../ViewModel/settings_view_model.dart';
 import '../ViewModel/user_view_model.dart';
 
-
+/// The first screen shown when the app launches.
+///
+/// Displays the app logo briefly while attempting to restore a previous
+/// session via [UserViewModel.initUser]:
+/// * If a valid token is found, the user is fetched from the API and the
+///   app navigates to [Routes.HOME].
+/// * If no token exists, the app navigates to [LoginScreen] (or the
+///   language-selection screen on first run).
+///
+/// Also handles the "new version available" flow by showing an update dialog
+/// when [UserViewModel.isNewVersion] is `true`.
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 

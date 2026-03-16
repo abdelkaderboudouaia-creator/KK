@@ -10,6 +10,13 @@ import '../../ViewModel/auth_view_model.dart';
 import '../Widgets/custom_button.dart';
 import '../Widgets/custom_text_button.dart';
 
+/// OTP verification screen – step 2 of the password-reset flow.
+///
+/// Displays a 6-digit OTP input ([OtpTextField]) and a 30-second countdown
+/// timer.  When the timer reaches zero, a "Resend" button becomes active.
+///
+/// Submitting a valid OTP calls [AuthViewModel.verifyOTP] which, on success,
+/// navigates to [ResetPassword] with the reset token.
 class VerifyOtp extends StatefulWidget {
   const VerifyOtp({super.key});
 
