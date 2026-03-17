@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:qplay/View/Player/Widgets/custom_categories_game.dart';
 
 import '../../../Helper/app_const.dart';
+import '../../../Helper/app_routes.dart';
 import '../../../ViewModel/game_view_model.dart';
 import '../../../ViewModel/settings_view_model.dart';
 import '../../Widgets/custom_game.dart';
@@ -37,6 +38,15 @@ class _HomeState extends State<Home> {
           style: TextStyle(
             fontWeight: FontWeight.w600,
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Get.toNamed(Routes.CREATE_GAME),
+        backgroundColor: AppConst.primaryColor,
+        icon: const Icon(Icons.add, color: Colors.white),
+        label: Text(
+          'Add Game'.tr,
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         ),
       ),
       body: Padding(

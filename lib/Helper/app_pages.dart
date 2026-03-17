@@ -1,6 +1,7 @@
 
 
 import 'package:get/get.dart';
+import 'package:qplay/View/Player/create_game_screen.dart';
 import 'package:qplay/View/Player/help_center.dart';
 import 'package:qplay/View/Player/privacy_policy.dart';
 import 'package:qplay/View/Player/transaction_details.dart';
@@ -86,6 +87,10 @@ class AppPages {
     GetPage(
       name: Routes.PRIVACY_POLICY,
       page: () => const PrivacyPolicy(),
+    ),
+    GetPage(
+      name: Routes.CREATE_GAME,
+      page: () => const CreateGameScreen(),
     ),
     GetPage(
       name: Routes.HELP_CENTER,

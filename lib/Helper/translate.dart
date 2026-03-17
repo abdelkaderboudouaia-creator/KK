@@ -257,7 +257,25 @@ class Translate extends Translations{
       'Due to violation of the terms of service, Farya has banned your account' : 'بسبب انتهاك شروط الخدمة، قامت Farya بحظر حسابك',
       'Is there an error ?\ncontact us' : 'هل يوجد خطأ ؟\nإتصل بنا',
 
-      'Send Balance' : 'إرسال الرصيد'
+      'Send Balance' : 'إرسال الرصيد',
+
+      'Add Game' : 'إضافة لعبة',
+      'Create New Game' : 'إنشاء لعبة جديدة',
+      'Game created successfully' : 'تم إنشاء اللعبة بنجاح',
+      'Please select a match date' : 'يرجى تحديد تاريخ المباراة',
+      'Please enter match duration' : 'يرجى إدخال مدة المباراة',
+      'Please enter a valid duration' : 'يرجى إدخال مدة صالحة',
+      'Players Per Team' : 'عدد اللاعبين في الفريق',
+      'Please enter players per team' : 'يرجى إدخال عدد اللاعبين في الفريق',
+      'Please enter a valid number' : 'يرجى إدخال رقم صالح',
+      'Please enter a stadium name' : 'يرجى إدخال اسم الملعب',
+      'Please enter a price' : 'يرجى إدخال السعر',
+      'Please enter a valid price' : 'يرجى إدخال سعر صالح',
+      'Map URL' : 'رابط الخريطة',
+      'Map URL (optional)' : 'رابط الخريطة (اختياري)',
+      'Description (optional)' : 'الوصف (اختياري)',
+      'Match Duration (minutes)' : 'مدة المباراة (بالدقائق)',
+      'Water' : 'ماء',
     }
   };
 
