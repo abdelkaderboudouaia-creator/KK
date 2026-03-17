@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../Helper/app_const.dart';
 import '../../Helper/game_characteristics.dart';
@@ -34,7 +35,6 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
   bool waterAvailability = false;
   DateTime? matchDate;
   List<String> selectedCharacteristics = [];
-  bool isLoading = false;
 
   @override
   void dispose() {
@@ -145,7 +145,7 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
                             matchDate = DateTime(date.year, date.month,
                                 date.day, time.hour, time.minute);
                             matchDateController.text =
-                                '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')} ${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
+                                DateFormat('yyyy-MM-dd HH:mm').format(matchDate!);
                           }
                         }
                       },
