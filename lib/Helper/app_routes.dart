@@ -14,6 +14,7 @@ class Routes {
   static const WALLET = '/wallet';
   static const TRANSACTIONS = '/transactions';
   static const GAMES = '/games';
+  static const CREATE_GAME = '/create-game';
   static const PRIVACY_POLICY = '/privacy-policy';
   static const HELP_CENTER = '/help-center';
 

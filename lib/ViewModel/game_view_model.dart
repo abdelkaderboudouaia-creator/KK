@@ -11,6 +11,7 @@ import 'Api/game_api.dart';
 class GameViewModel extends GetxController {
 
   bool isLoading = false;
+  bool isCreating = false;
 
   GameApi gameApi = GameApi();
 
@@ -39,6 +40,87 @@ class GameViewModel extends GetxController {
       update();
     }
   }
+
+  Future<bool> createGame({
+    required DateTime matchDate,
+    required int matchDuration,
+    required String gameType,
+    required String placeName,
+    required double price,
+    required int playersPerTeam,
+    required bool goalkeeperAvailability,
+    required bool refereeAvailability,
+    required bool waterAvailability,
+    List<String>? characteristics,
+    String? description,
+    String? mapUrl,
+    double? placeLongitude,
+    double? placeLatitude,
+  }) async {
+    try {
+      isCreating = true;
+      update();
+
+      final response = await gameApi.createGame(
+        matchDate: matchDate.toIso8601String(),
+        matchDuration: matchDuration,
+        gameType: gameType,
+        placeName: placeName,
+        price: price,
+        playersPerTeam: playersPerTeam,
+        goalkeeperAvailability: goalkeeperAvailability,
+        refereeAvailability: refereeAvailability,
+        waterAvailability: waterAvailability,
+        characteristics: characteristics,
+        description: description,
+        mapUrl: mapUrl,
+        placeLongitude: placeLongitude,
+        placeLatitude: placeLatitude,
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Get.snackbar(
+          'Success'.tr,
+          'Game created successfully'.tr,
+          snackPosition: SnackPosition.TOP,
+          colorText: Colors.white,
+          backgroundColor: Colors.green,
+        );
+        await getGames(showLoading: false);
+        return true;
+      } else if (response.statusCode == 401) {
+        Get.snackbar(
+          'Authentication Required'.tr,
+          'Please log in to continue'.tr,
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+        );
+        Future.delayed(const Duration(seconds: 1), () {
+          Get.offAllNamed(Routes.LOGIN);
+        });
+      } else {
+        Get.snackbar(
+          'Error'.tr,
+          'An error occurred, please try again later'.tr,
+          snackPosition: SnackPosition.TOP,
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        'Error'.tr,
+        'Check your connectivity'.tr,
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+      );
+    } finally {
+      isCreating = false;
+      update();
+    }
+    return false;
+  }
+
 
   Future<GameModel?> getGame(int gameId) async {
     try {
