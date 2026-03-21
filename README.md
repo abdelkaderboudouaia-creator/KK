@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-# qplay
+# Q-Play
 
-A new Flutter project.
+An app that helps people find games being played around them and take part in them.
 
 ## Getting Started
 
@@ -15,7 +14,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-=======
-# Q-play
-an app that helps people find games being played around them and take parte in them.
->>>>>>> 3fa18b4091393fe51055fcfd042ed7791b485675
