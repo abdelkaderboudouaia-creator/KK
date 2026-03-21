@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeService themeService = ThemeService();
     return GetMaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       translations: Translate(),
       initialBinding: BindingsBuilder(() {
         Get.put(SettingsViewModel(), permanent: true);
