@@ -8,6 +8,19 @@ import '../ViewModel/notification_view_model.dart';
 import '../ViewModel/settings_view_model.dart';
 import '../ViewModel/user_view_model.dart';
 
+/// Central constants and shared resources for the QPlay application.
+///
+/// Contains:
+/// * **Colour palette** – light/dark theme colours, status colours, gradients,
+///   shadows, and shimmer colours consumed by [AppTheme].
+/// * **[primarySwatch]** – the Material swatch used to build the primary
+///   colour hierarchy.
+/// * **[prefs]** – the global [SharedPreferences] instance initialised in
+///   `main()` and used throughout the app to store/read persistent values
+///   (token, userId, language, theme preference, push token).
+/// * **[endPoint]** – the base URL of the backend REST API.
+/// * **[restartViewModel]** – deletes and re-creates all GetX controllers
+///   after a logout so there is no stale state.
 class AppConst {
 
   static Color primaryColor = const Color(0xff4CAF50);

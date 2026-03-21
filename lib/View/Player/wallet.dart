@@ -5,6 +5,14 @@ import 'package:qplay/View/Player/transactions.dart';
 import 'package:qplay/View/Widgets/phone_number_field.dart';
 import 'package:qplay/ViewModel/payment_view_model.dart';
 
+/// Screen that shows the user's wallet balance and allows them to top up.
+///
+/// Loads [WalletModel] data (including recent [WalletTransactionModel]
+/// entries) via [PaymentViewModel.getTransactions] on initialisation.
+///
+/// A "Recharge" button triggers [PaymentViewModel.createPayment] which
+/// opens the SkipCash payment page in an external browser.  The recent
+/// transactions list links to the full [Transactions] screen.
 class Wallet extends StatefulWidget {
   const Wallet({super.key});
 

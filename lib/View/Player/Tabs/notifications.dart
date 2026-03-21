@@ -7,6 +7,12 @@ import '../../../Helper/app_const.dart';
 import '../../../ViewModel/notification_view_model.dart';
 import '../../../ViewModel/settings_view_model.dart';
 
+/// Notifications tab – shows the real-time notification feed.
+///
+/// Observes [NotificationViewModel.notifications] (a reactive list) and
+/// renders each item with [NotificationCard].  An unread badge count is
+/// displayed on the bottom-nav icon via [NotificationViewModel.allRead].
+/// A "Mark all as read" action is available in the app bar.
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
 

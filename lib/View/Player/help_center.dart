@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// Static screen that displays help and support information for the user.
+///
+/// The content is hardcoded (no API call required) and includes contact
+/// details and frequently asked questions.
 class HelpCenter extends StatelessWidget {
   const HelpCenter({super.key});
 

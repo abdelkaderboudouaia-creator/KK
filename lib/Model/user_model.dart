@@ -1,10 +1,19 @@
 
 // lib/data/models/user_model.dart
 
-
 import 'package:qplay/Model/admin_model.dart';
 import 'package:qplay/Model/player_model.dart';
 
+/// Represents a registered user of the QPlay application.
+///
+/// A user can have one of two roles:
+/// * `player` – a regular player who can browse and join games. The
+///   corresponding profile data is stored in [player].
+/// * `admin`  – an administrator who manages games and the platform. The
+///   corresponding profile data is stored in [admin].
+///
+/// The object is deserialized from the `/api/user` endpoint and is cached
+/// globally through [UserViewModel.user].
 class UserModel {
   final int id;
   final String username;

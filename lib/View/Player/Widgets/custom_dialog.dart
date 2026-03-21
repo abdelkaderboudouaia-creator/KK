@@ -5,7 +5,11 @@ import '../../../ViewModel/settings_view_model.dart';
 
 //'Are you sure ? '
 
-
+/// Shows an "Are you sure?" confirmation dialog used on the Profile tab
+/// before logging out.
+///
+/// [title] and [text] provide context.  [onPressed] is executed when the
+/// user confirms.
 Future<void> showConfirmationDialog({required String title,required String text,required Function() onPressed}) async {
 
   SettingsViewModel settingsViewModel = Get.find<SettingsViewModel>();

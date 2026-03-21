@@ -8,6 +8,12 @@ import '../Widgets/custom_text_button.dart';
 import '../Widgets/custom_text_field.dart';
 import '/Helper/app_const.dart';
 
+/// "Forgot password" screen – step 1 of the password-reset flow.
+///
+/// The user enters their registered email address and taps "Send".
+/// [AuthViewModel.forgetPassword] is called which sends a reset code to
+/// the email and, on success, navigates to [VerifyOtp] passing the
+/// `resetId` returned by the backend.
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
 

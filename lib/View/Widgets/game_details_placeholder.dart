@@ -4,7 +4,11 @@ import 'package:get/get.dart';
 import '../../Helper/app_const.dart';
 import '../../ViewModel/settings_view_model.dart';
 
-
+/// Skeleton loading placeholder shown on the [GameDetails] screen while the
+/// game data is being fetched.
+///
+/// Uses grey shimmer-style boxes to mimic the final layout so the user
+/// experiences a smooth transition once data arrives.
 class GameDetailsPlaceholder extends StatelessWidget {
 
   const GameDetailsPlaceholder({super.key,});

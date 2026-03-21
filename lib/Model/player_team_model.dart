@@ -3,6 +3,12 @@
 import 'package:qplay/Model/player_model.dart';
 import 'package:qplay/Model/team_model.dart';
 
+/// Pivot / join-table model that records which [PlayerModel] belongs to which
+/// [TeamModel] within a game.
+///
+/// When a player joins a game the backend creates a [PlayerTeamModel] row
+/// linking [playerId] ↔ [teamId].  This list is returned inside
+/// [TeamModel.playerTeams] so the UI can display team rosters.
 class PlayerTeamModel {
   final int id;
   final int playerId;

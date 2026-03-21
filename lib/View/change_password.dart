@@ -12,6 +12,12 @@ import 'Widgets/custom_profile_pic.dart';
 import 'Widgets/custom_text_field.dart';
 import 'Widgets/phone_number_field.dart';
 
+/// Screen that allows the authenticated user to change their account password.
+///
+/// The user must supply their [currentPassword] and a [newPassword]
+/// (confirmed by a second field).  On submission the request is forwarded to
+/// [AuthViewModel.changePassword].  A loading overlay is displayed while the
+/// API call is pending.
 class ChangePassword extends StatefulWidget {
   const ChangePassword({
     super.key,
