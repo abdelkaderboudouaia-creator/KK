@@ -34,7 +34,6 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     userViewModel.loading = false;
     username = userViewModel.user!.username;
