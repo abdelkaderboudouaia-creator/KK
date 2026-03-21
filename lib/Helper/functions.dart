@@ -61,6 +61,6 @@ String showTime(DateTime time) {
 
 
 String fileUrl(String path) {
-  const String baseUrl = "http://192.168.179.63/qplay/public";
+  const String baseUrl = "https://www.q-play.in/qplay/public";
   return "$baseUrl/$path";
 }
