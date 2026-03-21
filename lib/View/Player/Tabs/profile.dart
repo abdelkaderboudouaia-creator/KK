@@ -12,6 +12,18 @@ import '../../../ViewModel/user_view_model.dart';
 import '../../Widgets/custom_profile_pic.dart';
 import '../Widgets/custom_dialog.dart';
 
+/// Profile tab – shows the authenticated user's profile information and
+/// app settings.
+///
+/// Displays the avatar ([CustomProfilePic]), full name, and menu items:
+/// * Edit Profile   → [Routes.EDIT_PROFILE]
+/// * Wallet         → [Routes.WALLET]
+/// * Change Password→ [Routes.CHANGE_PASSWORD]
+/// * Language       → [Routes.LANGUAGE]
+/// * Privacy Policy → [Routes.PRIVACY_POLICY]
+/// * Help Center    → [Routes.HELP_CENTER]
+/// * Dark/Light mode toggle ([ThemeService.switchTheme])
+/// * Logout (calls [AuthViewModel.logout] after a confirmation dialog)
 class Profile extends StatefulWidget {
   const Profile({super.key});
 

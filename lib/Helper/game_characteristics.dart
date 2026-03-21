@@ -1,5 +1,18 @@
 import 'package:get/get.dart';
 
+/// Enum representing all optional amenities / characteristics that a sports
+/// venue can offer.
+///
+/// Values: [cafeteria], [shower], [bathroom], [restaurant], [parking],
+/// [openStadium], [indoorStadium], [wifiAccess].
+///
+/// Provides:
+/// * [fromString] – parses a backend string (e.g. `'cafeteria'`) into the
+///   corresponding enum value.
+/// * [value]       – the snake_case string used in API payloads.
+/// * [displayName] – the localised emoji-decorated label shown in the UI.
+/// * [icon]        – a standalone emoji icon for the characteristic.
+/// * [description] / [descriptionAr] – English and Arabic descriptions.
 enum GameCharacteristic {
   cafeteria,
   shower,

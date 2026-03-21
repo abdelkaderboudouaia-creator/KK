@@ -4,6 +4,12 @@ import 'package:qplay/Helper/functions.dart';
 
 import '../../Helper/app_const.dart';
 
+/// Displays a circular user avatar.
+///
+/// Loads the image from [url] (a relative path that is combined with the
+/// base API URL via [fileUrl]).  If the URL is empty or fails to load, a
+/// fallback circle with the first letter of [name] is shown instead.
+/// [size] controls the diameter of the avatar in logical pixels.
 class CustomProfilePic extends StatelessWidget {
   const CustomProfilePic(
       {super.key,

@@ -8,6 +8,18 @@ import 'package:qplay/ViewModel/Api/Exceptions/api_exception.dart';
 
 import 'Api/game_api.dart';
 
+/// GetX controller that manages the list of available games and game-joining
+/// logic.
+///
+/// * [getGames]  – fetches all (optionally filtered by [gameType]) games from
+///   the backend and stores them in [games].
+/// * [getGame]   – fetches a single [GameModel] by its [gameId].
+/// * [joinGame]  – sends a join-game request (selecting a team) and, on
+///   success, refreshes the individual game so the UI reflects the updated
+///   team roster.
+///
+/// [isLoading] is used to show/hide loading indicators on the Home screen
+/// and Game Details screen.
 class GameViewModel extends GetxController {
 
   bool isLoading = false;

@@ -1,6 +1,11 @@
 import 'package:get/get.dart';
 
-
+/// GetX [Translations] class that provides Arabic (`ar`) and English (`en`)
+/// string translations for all user-visible text in the app.
+///
+/// Strings are looked up at runtime with the `.tr` extension provided by
+/// the GetX package.  The active locale is set via [SettingsViewModel.setLocal]
+/// and persisted to [SharedPreferences].
 class Translate extends Translations{
   @override
   // TODO: implement keys
@@ -220,6 +225,10 @@ class Translate extends Translations{
       'No transactions yet' : "لا توجد معاملات حتى الآن",
       'Balance Added' : "تمت إضافة الرصيد",
       'Payment' : 'دفع',
+      'Payment Successful' : 'تمت عملية الدفع بنجاح',
+      'Your wallet has been topped up successfully.' : 'تمت إضافة الرصيد إلى محفظتك بنجاح.',
+      'Payment Failed' : 'فشلت عملية الدفع',
+      'Your payment could not be completed. Please try again.' : 'تعذر إتمام عملية الدفع. يُرجى المحاولة مرة أخرى.',
       'Today' : 'اليوم',
       'Yesterday' : 'أمس',
       'days ago' : 'منذ أيام',

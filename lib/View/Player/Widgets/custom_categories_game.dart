@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// A horizontal scrollable row of game-category filter chips.
+///
+/// [categories] is the list of category labels (e.g. `['All', 'Football',
+/// 'Padel']`).  Tapping a chip calls [onSelect] with the chip's index so
+/// the parent ([Home]) can filter the displayed games.
 class CustomCategoriesGame extends StatelessWidget {
   final List<String> categories;
   final void Function(int index)? onSelect;

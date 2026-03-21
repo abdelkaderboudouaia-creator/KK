@@ -2,7 +2,15 @@ import 'package:qplay/Model/game_model.dart';
 import 'package:qplay/Model/team_model.dart';
 import 'package:qplay/Model/wallet_model.dart';
 
-
+/// Represents a single credit or debit entry in a [WalletModel].
+///
+/// [type] is either:
+/// * `'in'`  – money was added to the wallet (e.g. a top-up).
+/// * `'out'` – money was deducted from the wallet (e.g. joining a game).
+///
+/// Optional relations [game] and [team] give context about which match the
+/// transaction is linked to.  [formattedAmount] produces a human-readable
+/// string such as `+$25.00` or `-$25.00`.
 class WalletTransactionModel {
   final int id;
   final int? walletId;

@@ -1,5 +1,14 @@
 import 'package:get/get.dart';
 
+/// Returns a human-readable relative time string (e.g. "2 minutes ago" /
+/// "منذ دقيقتان") for the given [time].
+///
+/// The output language is determined by the currently active GetX locale:
+/// * If the locale is **not** `ar`, English text is returned.
+/// * If the locale is `ar`, Arabic text with correct dual/plural forms is
+///   returned.
+///
+/// Used by notification and transaction cards to display timestamps.
 String showTime(DateTime time) {
   DateTime now = DateTime.now();
   int secondsDifference = now.difference(time).inSeconds;

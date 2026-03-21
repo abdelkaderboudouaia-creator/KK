@@ -1,6 +1,12 @@
 
 
 // lib/data/models/player_model.dart
+
+/// Represents a player profile that is linked to a [UserModel].
+///
+/// When a user registers with the `player` role the backend creates a
+/// corresponding [PlayerModel] row.  The object is returned nested inside
+/// [UserModel.player] and is also referenced by [PlayerTeamModel].
 class PlayerModel {
   final int id;
   final int? userId;

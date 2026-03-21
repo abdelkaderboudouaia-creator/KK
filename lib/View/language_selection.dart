@@ -5,7 +5,15 @@ import '../ViewModel/settings_view_model.dart';
 import '../Helper/app_const.dart';
 import '../ViewModel/user_view_model.dart';
 
-
+/// Language selection screen shown the first time a user opens the app.
+///
+/// Allows the user to choose between **Arabic** and **English**.  The chosen
+/// locale is persisted via [SettingsViewModel.setLocal] and applied
+/// immediately with [Get.updateLocale].  After selection the user is
+/// taken to [Routes.LOGIN].
+///
+/// This screen is also accessible from the Profile tab so the user can
+/// change their language at any time.
 class LanguageSelection extends StatelessWidget {
   const LanguageSelection({super.key});
 

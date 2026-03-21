@@ -4,6 +4,16 @@ import 'package:qplay/ViewModel/Api/Exceptions/api_exception.dart';
 
 import '../../Helper/app_const.dart';
 
+/// Low-level HTTP client for game-related endpoints.
+///
+/// | Method     | HTTP | Endpoint          |
+/// |------------|------|-------------------|
+/// | [getGames] | GET  | `/games`          |
+/// | [getGame]  | GET  | `/games/:id`      |
+/// | [joinGame] | POST | `/join-game`      |
+///
+/// [getGames] throws an [ApiException] on non-200 responses so the
+/// [GameViewModel] can surface meaningful error messages.
 class GameApi {
   Future<http.Response> getGames({String? gameType}) async {
     try {

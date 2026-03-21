@@ -21,6 +21,17 @@ import '../View/language_selection.dart';
 import '../View/splash_screen.dart';
 import 'app_routes.dart';
 
+/// Registers all application routes with the GetX navigation system.
+///
+/// Each [GetPage] maps a route name (from [Routes]) to a screen widget.
+/// Some routes include conditional logic:
+/// * `/games` – renders [GameDetails] if an `id` query parameter is present,
+///   otherwise falls back to [NavigatorScreen].
+/// * `/transactions` – renders [TransactionDetails] if an `id` is present,
+///   otherwise renders the [Transactions] list.
+///
+/// [INITIAL] points to [Routes.SPLASH] which is the very first screen
+/// shown when the app launches.
 class AppPages {
   static const INITIAL = Routes.SPLASH;
 

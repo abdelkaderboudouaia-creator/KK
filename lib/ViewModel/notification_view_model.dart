@@ -7,6 +7,26 @@ import '../Model/notification_model.dart';
 import 'Api/notification_api.dart';
 import 'user_view_model.dart';
 
+/// GetX controller responsible for real-time notifications.
+///
+/// On initialisation ([onInit]) this controller:
+/// 1. Opens a WebSocket connection ([connect]) to the Pusher-compatible
+///    server via [NotificationApi] and subscribes to the user's private
+///    channel `private-notifications.<userId>`.
+/// 2. Registers an AwesomeNotifications action listener (alias `an`) so that
+///    tapping an OS notification deep-links the user to the correct screen.
+///
+/// [notifications] is a reactive list of [NotificationModel] objects sorted
+/// newest-first.  [allRead] is `true` when every notification has been read.
+///
+/// Public API:
+/// * [getNotification]    – loads existing notifications from the REST API.
+/// * [readNotification]   – marks a single notification as read.
+/// * [readAllNotification]– marks every notification as read.
+/// * [disconnect]         – closes the WebSocket (called on logout).
+///
+/// [redirectRoute] is a static field used to remember a deep-link route
+/// that arrived while no user was logged in, so it can be followed after login.
 class NotificationViewModel extends GetxController {
 
   NotificationApi notificationApi = NotificationApi();

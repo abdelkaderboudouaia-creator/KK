@@ -17,6 +17,21 @@ import '../View/Widgets/custom_message_dialog.dart';
 import 'Api/auth_api.dart';
 import 'user_view_model.dart';
 
+/// GetX controller responsible for all authentication flows.
+///
+/// Manages:
+/// * **Email/password login** ([login])
+/// * **Google Sign-In** ([loginWithGoogle])
+/// * **Registration** ([register])
+/// * **Password reset** – forget password → OTP verification → reset
+///   ([forgetPassword], [verifyOTP], [resetPassword])
+/// * **Change password** while authenticated ([changePassword])
+/// * **Logout** ([logout])
+///
+/// Temporary form field values (e.g. [email], [password]) are stored directly
+/// on this controller so they are shared across the Auth screens without
+/// needing extra state.  [loading] drives the `ModalProgressHUD` shown on
+/// each Auth screen.
 class AuthViewModel extends GetxController {
   AuthApi authApi = AuthApi();
 

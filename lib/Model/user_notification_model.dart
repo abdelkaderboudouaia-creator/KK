@@ -3,6 +3,12 @@
 import 'package:qplay/Model/notification_model.dart';
 import 'package:qplay/Model/user_model.dart';
 
+/// Pivot model that tracks whether a specific [UserModel] has read a given
+/// [NotificationModel].
+///
+/// The backend creates one [UserNotificationModel] row per
+/// (user, notification) pair. [isRead] and [readAt] are updated when the
+/// user taps the notification or calls "mark all as read".
 class UserNotificationModel {
   final int id;
   final int? userId;

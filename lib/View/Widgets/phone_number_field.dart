@@ -7,6 +7,12 @@ import 'package:intl_phone_field/phone_number.dart';
 import '../../Helper/app_const.dart';
 import '../../ViewModel/settings_view_model.dart';
 
+/// An international phone-number input widget backed by [IntlPhoneField].
+///
+/// Displays a country-code selector flag and text field.  The field
+/// automatically validates the format for the selected country.
+/// [onChanged] receives the full [PhoneNumber] object (country code + number).
+/// [validator] allows custom validation logic on top of the built-in check.
 class PhoneNumberField extends StatelessWidget {
   PhoneNumberField({
     super.key,

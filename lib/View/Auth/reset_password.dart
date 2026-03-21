@@ -8,6 +8,13 @@ import '../../ViewModel/user_view_model.dart';
 import '../Widgets/custom_button.dart';
 import '../Widgets/custom_text_field.dart';
 
+/// Password-reset screen – step 3 of the password-reset flow.
+///
+/// Receives the reset `token` as a query parameter and asks the user to
+/// enter and confirm a new password.  On submission
+/// [AuthViewModel.resetPassword] is called.  Success redirects to
+/// [Routes.LOGIN]; an expired token redirects back to
+/// [Routes.FORGET_PASSWORD].
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
 

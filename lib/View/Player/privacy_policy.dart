@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// Static screen that presents the application's privacy policy text.
+///
+/// The content is hardcoded (no API call required).
 class PrivacyPolicy extends StatelessWidget {
   const PrivacyPolicy({super.key});
 

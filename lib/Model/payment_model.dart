@@ -3,6 +3,17 @@ import 'package:qplay/Model/game_model.dart';
 import 'package:qplay/Model/team_model.dart';
 import 'package:qplay/Model/user_model.dart';
 
+/// Represents a payment transaction created when a player joins a game.
+///
+/// The payment is processed via the **SkipCash** payment gateway.  After
+/// calling `/api/create-payment` the backend returns a [payUrl] that the
+/// app opens in an external browser (see [PaymentViewModel.createPayment]).
+///
+/// [status] values returned by the backend:
+/// * `pending`  – payment has been initiated but not yet confirmed.
+/// * `paid`     – payment was completed successfully.
+/// * `canceled` – the user cancelled the payment.
+/// * `failed`   – the payment gateway reported a failure.
 class PaymentModel {
   final int? id;
   final String? skipCashPaymentId;

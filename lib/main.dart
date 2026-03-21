@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qplay/Helper/app_pages.dart';
 import 'package:qplay/Helper/app_theme.dart';
+import 'package:qplay/Helper/safe_payment_service.dart';
 import 'package:qplay/Helper/translate.dart';
-
+import 'package:qplay/ViewModel/Api/payment_api.dart';
 
 import 'package:qplay/ViewModel/auth_view_model.dart';
 import 'package:qplay/ViewModel/user_view_model.dart';
@@ -23,6 +24,17 @@ import 'ViewModel/settings_view_model.dart';
 import 'firebase_options.dart';
 
 @pragma('vm:entry-point')
+/// Top-level FCM background/foreground message handler.
+///
+/// Called by [FirebaseMessaging.onBackgroundMessage] (when the app is
+/// terminated or in the background) and by [FirebaseMessaging.onMessage]
+/// (when the app is in the foreground).
+///
+/// The function:
+/// 1. Re-initialises [SharedPreferences] if needed (background isolate).
+/// 2. Refreshes the notification list via [NotificationViewModel].
+/// 3. Displays a local OS notification via [AwesomeNotifications] using the
+///    `title`, `body`, and optional `payload` fields from [message.data].
 Future<void> _background(RemoteMessage message) async {
   try{
     try{
@@ -91,8 +103,100 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+/// The root widget of the QPlay application.
+///
+/// Configures the [GetMaterialApp] with:
+/// * **Translations** – [Translate] (Arabic / English).
+/// * **Initial bindings** – permanently registers all GetX controllers
+///   ([SettingsViewModel], [AuthViewModel], [UserViewModel],
+///   [GameViewModel], [NotificationViewModel]).
+/// * **Routing** – [AppPages.routes] driven by [Routes] constants.
+/// * **Theming** – [AppTheme.light] / [AppTheme.dark], with the active mode
+///   read from [ThemeService].
+/// * **Locale** – defaults to the language stored in [SharedPreferences]
+///   (falls back to `ar`).
+/// * **Lifecycle observer** – checks for any pending SkipCash payment each
+///   time the app returns to the foreground (via [WidgetsBindingObserver]).
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  /// Called by the OS whenever the app lifecycle state changes.
+  ///
+  /// When the app is [AppLifecycleState.resumed] (i.e. the user has returned
+  /// from the external browser), the pending payment status is re-checked so
+  /// the wallet balance can be updated and the user receives feedback.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _checkPendingPayments();
+    }
+  }
+
+  /// Verifies the status of any payment that was opened in an external browser.
+  ///
+  /// If a `pending_payment_id` is found in [SharedPreferences] the backend is
+  /// queried.  On a conclusive result (paid / cancelled / failed) the stored ID
+  /// is cleared and a snackbar notifies the user.
+  Future<void> _checkPendingPayments() async {
+    final paymentId = await SafePaymentService.getPendingPaymentId();
+    if (paymentId == null) return;
+
+    final response = await PaymentApi.getPaymentStatus(paymentId);
+
+    if (response['success'] == true) {
+      final statusId = response['data']?['statusId'];
+
+      switch (statusId) {
+        case PaymentApi.statusPaid:
+          await SafePaymentService.clearPendingPayment();
+          _showPaymentSuccess();
+          break;
+        case PaymentApi.statusCancelled:
+        case PaymentApi.statusFailed:
+          await SafePaymentService.clearPendingPayment();
+          _showPaymentFailed();
+          break;
+        // For a still-pending status keep the ID so we check again next time.
+      }
+    }
+  }
+
+  void _showPaymentSuccess() {
+    Get.snackbar(
+      'Payment Successful'.tr,
+      'Your wallet has been topped up successfully.'.tr,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: AppConst.successColor,
+      colorText: Colors.white,
+    );
+  }
+
+  void _showPaymentFailed() {
+    Get.snackbar(
+      'Payment Failed'.tr,
+      'Your payment could not be completed. Please try again.'.tr,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: AppConst.errorColor,
+      colorText: Colors.white,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,206 +222,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-// main.dart or your main app widget
-/*class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state.toString());
-    if (state == AppLifecycleState.resumed) {
-      // Check for pending payments when app resumes
-      _checkPendingPayments();
-    }
-  }
-
-  Future<void> _checkPendingPayments() async {
-    final paymentId = await SafePaymentService.getPendingPaymentId();
-    if (paymentId != null) {
-      // Check payment status
-      final response = await PaymentApi.getPaymentStatus(paymentId);
-      print('check pending payments');
-      print(response);
-      if (response['success'] == true) {
-        final statusId = response['data']['statusId'];
-
-        switch (statusId) {
-          case 2: // Paid
-            await SafePaymentService.clearPendingPayment();
-            _showPaymentSuccess();
-            break;
-          case 3: // Canceled
-          case 4: // Failed
-            await SafePaymentService.clearPendingPayment();
-            _showPaymentFailed();
-            break;
-        // For pending status, keep checking
-        }
-      }
-    }
-  }
-
-  void _showPaymentSuccess() {
-    // Show success message/navigate to success page
-    print('success');
-  }
-
-  void _showPaymentFailed() {
-    // Show failure message
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _checkPendingPayments();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Payment Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('Payment Example')),
-        body: Center(
-          child: ExternalBrowserPaymentButton(
-            amount: 1.0,
-            firstName: 'John',
-            lastName: 'Doe',
-            phone: '1234567890',
-            email: 'john.doe@example.com',
-            transactionId: 'TX123456',
-            onPaymentInitiated: () {
-              print('Payment process started');
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-class ExternalBrowserPaymentButton extends StatelessWidget {
-  final double amount;
-  final String firstName;
-  final String lastName;
-  final String phone;
-  final String email;
-  final String transactionId;
-  final VoidCallback? onPaymentInitiated;
-
-  const ExternalBrowserPaymentButton({
-    Key? key,
-    required this.amount,
-    required this.firstName,
-    required this.lastName,
-    required this.phone,
-    required this.email,
-    required this.transactionId,
-    this.onPaymentInitiated,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () async {
-        // Show loading
-        showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => Center(child: CircularProgressIndicator()),
-        );
-
-        final success = await SafePaymentService.initiatePayment(
-          amount: amount,
-          firstName: firstName,
-          lastName: lastName,
-          phone: phone,
-          email: email,
-          transactionId: transactionId,
-        );
-
-        Navigator.of(context).pop(); // Close loading
-
-        if (success) {
-          onPaymentInitiated?.call();
-
-          // Show instruction dialog
-          _showPaymentInstructions(context);
-        } else {
-          _showErrorDialog(context);
-        }
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue,
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.open_in_browser, color: Colors.white),
-          const SizedBox(width: 8),
-          Text(
-            'Pay with SkipCash',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showPaymentInstructions(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Payment Opened'),
-        content: Text(
-            'The payment page has been opened in your browser. '
-                'Complete the payment and return to the app. '
-                'We\'ll automatically detect when the payment is complete.'
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showErrorDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Error'),
-        content: Text('Failed to initiate payment. Please try again.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
-}*/

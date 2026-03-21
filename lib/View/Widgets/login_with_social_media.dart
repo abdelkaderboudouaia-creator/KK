@@ -3,6 +3,11 @@ import 'package:get/get.dart';
 
 import '../../Helper/app_const.dart';
 
+/// A button that triggers a social-media (Google) login flow.
+///
+/// [dark] switches between a light and dark button variant.
+/// [text] is the button label (e.g. "Continue with Google").
+/// [onPressed] is called when the button is tapped.
 class LoginWithSocialMedia extends StatelessWidget {
   const LoginWithSocialMedia({Key? key, required this.dark, required this.text, required this.onPressed}) : super(key: key);
   final bool dark;
